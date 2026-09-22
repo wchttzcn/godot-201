@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://c5mlkqt0vbxbm"]
+
+[ext_resource type="Texture2D" uid="uid://ca5ubxa6kyag7" path="res://assets/textures/cowboy-1.png" id="1_eg21a"]
+[ext_resource type="Texture2D" uid="uid://d0huyhdp0kaq8" path="res://assets/textures/q-key.png" id="2_s6b1u"]
+
+[sub_resource type="Animation" id="Animation_eg21a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CowboySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_7qwkv"]
+resource_name = "death"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CowboySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_adixx"]
+resource_name = "fumble"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CowboySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24]
+}
+
+[sub_resource type="Animation" id="Animation_cuije"]
+resource_name = "holster"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CowboySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_s6b1u"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CowboySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_girf3"]
+resource_name = "shoot"
+length = 0.39999999999999997
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CowboySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_girf3"]
+_data = {
+&"RESET": SubResource("Animation_eg21a"),
+&"death": SubResource("Animation_7qwkv"),
+&"fumble": SubResource("Animation_adixx"),
+&"holster": SubResource("Animation_cuije"),
+&"idle": SubResource("Animation_s6b1u"),
+&"shoot": SubResource("Animation_girf3")
+}
+
+[node name="Cowboy" type="Node2D" unique_id=1419399333]
+
+[node name="CowboySprite" type="Sprite2D" parent="." unique_id=1522746542]
+texture = ExtResource("1_eg21a")
+hframes = 5
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1798645008]
+libraries/ = SubResource("AnimationLibrary_girf3")
+autoplay = &"idle"
+
+[node name="PressKey" type="Sprite2D" parent="." unique_id=138576307]
+position = Vector2(0, 36)
+texture = ExtResource("2_s6b1u")
